@@ -18,10 +18,19 @@
     background: black;
     width: 20px;
 }
+#white{
+    background: white;
+    width: 20px;
+}
+#yellow{
+    background: yellow;
+    width: 20px;
+}
 
 button{
     width: 30px;
     height: 30px;
+    float: left;
 }
 .brush{
     border-radius: 50%;
@@ -44,3 +53,8 @@ button{
     color: black;
     width: 100px;
 }
+#pencil{
+    width: 1px;
+    height: 5px;
+}
+
