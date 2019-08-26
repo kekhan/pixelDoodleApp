@@ -113,7 +113,7 @@ var  undo = (x,y) => {
     context.lineTo(endingX,endingY);
     context.strokeStyle = "white";
     context.stroke();
-    context.lineWidth = 30;
+    context.lineWidth = 50;
     console.log("UNDO")
 }
 
