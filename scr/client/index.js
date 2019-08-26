@@ -13,6 +13,12 @@ let image = new Image();
 const rect = canvas.getBoundingClientRect();
 let brushSize = 1;
 let savedImages = [];
+let x_array = [];
+let y_array = []
+let startingX = 0;
+let endingX = 0;
+let startingY = 0;
+let endingY = 0;
 window.addEventListener('mousemove',function event(e){
     x = e.clientX - rect.x;
     y = e.clientY - rect.y;
@@ -25,21 +31,28 @@ window.addEventListener('mousedown', function event(e){
     isDrawing = true;
     x = e.clientX - rect.x;
     y = e.clientY - rect.y;
+    startingX = x;
+    startingY = y;
     if(e.clientX > 100 & e.clientY> 100){
         drawingImg(x,y, e.clientX, e.clientY);
     }
     
 });
 window.addEventListener('mouseup', function event(e){
+    x = e.clientX - rect.x;
+    y = e.clientY - rect.y;
+    endingX = x;
+    endingY = y;
     isDrawing = false;
-  
+    undo(x,y);
 });
+
 window.addEventListener('keydown', function event(e){
     x = e.clientX;
     y = e.clientY;
     isErase = true;
     if(e.keyCode == 69){
-        undo(x,y);
+        
 
     }
 });
@@ -49,7 +62,7 @@ window.addEventListener('keyup', function event(e){
 
 });
 
-function drawingImg(x1, y1, x2, y2){
+var drawingImg = (x1, y1, x2, y2) => {
     context.fillStyle = "black";
     context.beginPath();
     context.moveTo(x1,y1);
@@ -60,19 +73,19 @@ function drawingImg(x1, y1, x2, y2){
     
     
 }
-function erase(x,y){
+var erase = (x,y) => {
     if(isErase && isDrawing){
         brushColor = 'white';
     }
 }
 
-function changeColor (btn) {
+var changeColor = (btn) => {
     
     color = btn.id;
     brushColor = color;
 };
 
-function changeBrushSize(btn){
+var changeBrushSize = (btn) => {
     console.log(btn.id);
     size = btn.id;
     if(size == "smallBrush"){
@@ -88,37 +101,37 @@ function changeBrushSize(btn){
     else if (size == "bigBrush") {
         brushSize = 15;        
     }
-
 }
 var  undo = (x,y) => {
     // erases the last mouse down to mouse up strokes
     /*need to find current xy coordinates and prevoius xy coordinataes*/
+    let undoX = -(endingX - startingX);
+    let undoY = -(endingY - startingY);
+    context.beginPath();
 
-    context.moveTo(x, y);
-    context.lineTo(x-100,y-100);
-    context.fillStyle = "white";
+    context.moveTo(startingX,startingY);
+    context.lineTo(endingX,endingY);
+    context.strokeStyle = "white";
     context.stroke();
+    context.lineWidth = 30;
     console.log("UNDO")
 }
 
-function share(){
+var share = () => {
     /* user can shere image on social media via facebook, instagram, twitter */
     // convert into png 
     // if a social media button is pressed, call social media site and upload image 
     let urlId = image.src;
     // using fetch to post the image
     let data = {img: urlId};
-    const url =  'https://upload.twitter.com/1.1/media/upload.json?command=FINALIZE&media_id=1164410781405868032';
+    const url =  'https://upload.twitter.com/1.1/media/upload.json';
     fetch(url, {
         method: 'POST',
-        body: JSON.stringify(data),
-        
-        
+        headers: new Headers(),
+        body: JSON.stringify(data),    
     }).then(res => res.json())
     .then( response => console.log('succcess', JSON.stringify(response)))
-    
     .catch( error => console.log('error', error))
-
 }
 var save = () => {
     // saves the image as a url into database

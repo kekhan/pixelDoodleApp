@@ -30,7 +30,7 @@
 button{
     width: 30px;
     height: 30px;
-    float: left;
+    float: right;
 }
 .brush{
     border-radius: 50%;
