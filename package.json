@@ -1,0 +1,29 @@
+{
+  "name": "doodleapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "core-util-is": "^1.0.2",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kekhan/pixelDoodleApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kekhan/pixelDoodleApp/issues"
+  },
+  "homepage": "https://github.com/kekhan/pixelDoodleApp#readme"
+}
