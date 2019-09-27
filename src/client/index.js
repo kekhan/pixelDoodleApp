@@ -44,6 +44,7 @@ window.addEventListener('mouseup', function event(e){
     endingX = x;
     endingY = y;
     isDrawing = false;
+   
 });
 
 window.addEventListener('keydown', function event(e){
@@ -104,41 +105,24 @@ const changeBrushSize = (btn) => {
     }
 }
 const undo = (x,y) => {
+    
     // erases the last mouse down to mouse up strokes
     /*need to find current xy coordinates and prevoius xy coordinataes*/
     let undoX = -(endingX - startingX);
     let undoY = -(endingY - startingY);
     context.beginPath();
-
-    context.moveTo(startingX,startingY);
-    context.lineTo(endingX,endingY);
-    context.strokeStyle = "white";
-    context.stroke();
-    context.lineWidth = 50;
-    console.log("UNDO")
-}
-
-const share = () => {
-    /* user can shere image on social media via facebook, instagram, twitter */
-    // convert into png 
-    // if a social media button is pressed, call social media site and upload image 
-    let urlId = image.src;
-    // using fetch to post the image
-    let data = {img: urlId};
-    const url =  'https://upload.twitter.com/1.1/media/upload.json';
-    fetch(url, {
-        method: 'POST',
-        headers: new Headers(),
-        body: JSON.stringify(data),    
-    }).then(res => res.json())
-    .then( response => console.log('succcess', JSON.stringify(response)))
-    .catch( error => console.log('error', error))
-}
-const save = () => {
-    // saves the image as a url into database
-    convertToPng();
-    savedImages.push(image.src);
-    console.log(savedImages);
+    for (let x = x_array.length; x>0; x--){
+    
+            context.moveTo(startingX,startingY);
+            context.lineTo(x_array[x],y_array[x]);
+            context.strokeStyle = "white";
+            context.stroke();
+            context.lineWidth = 50;
+            console.log("UNDO")
+            console.log(x_array, y_array);
+    }
+    x_array = [];
+    y_array = [];
 }
 const clearCanvas = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -149,6 +133,15 @@ const convertToPng = () => {
     image.src = imageUrl;
     
 }
+
+
+/*const save = () => {
+    // saves the image as a url into database
+    convertToPng();
+    savedImages.push(image.src);
+    console.log(savedImages);
+}
+
 const login = () => {
     // logs in existing user
 
@@ -156,5 +149,5 @@ const login = () => {
 const signup = () => {
     // creates an account for new user.
 
-}
-console.log(x_array);
+}*/
+console.log(x_array, y_array);
