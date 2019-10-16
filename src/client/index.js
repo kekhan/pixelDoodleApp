@@ -15,26 +15,32 @@ let brushSize = 1;
 let savedImages = [];
 let x_array = [];
 let y_array = []
+let old_x_array = [];
+let old_y_array = [];
 let startingX = 0;
 let endingX = 0;
 let startingY = 0;
 let endingY = 0;
+let undo = false;
 window.addEventListener('mousemove',function event(e){
     x = e.clientX - rect.x;
     y = e.clientY - rect.y;
     if(isDrawing == true){
-        drawingImg(x,y, e.clientX, e.clientY);
+        drawingDoodle(x,y, e.clientX, e.clientY);
     }
 });
 
 window.addEventListener('mousedown', function event(e){
+    x_array = [];
+    y_array = [];
     isDrawing = true;
     x = e.clientX - rect.x;
     y = e.clientY - rect.y;
     startingX = x;
     startingY = y;
-    if(e.clientX > 100 & e.clientY> 100){
-        drawingImg(x,y, e.clientX, e.clientY);
+
+    if(e.clientX > 150 & e.clientY> 100){
+        drawingDoodle(x,y, e.clientX, e.clientY);
     }
     
 });
@@ -44,7 +50,11 @@ window.addEventListener('mouseup', function event(e){
     endingX = x;
     endingY = y;
     isDrawing = false;
-   
+    this.console.log("OLD", old_x_array);
+  
+  
+    
+
 });
 
 window.addEventListener('keydown', function event(e){
@@ -56,13 +66,14 @@ window.addEventListener('keydown', function event(e){
 
     }
 });
+
 window.addEventListener('keyup', function event(e){
     isErase = false;
     context.strokeStyle = brushColor;
 
 });
 
-const drawingImg = (x1, y1, x2, y2) => {
+const drawingDoodle = (x1, y1, x2, y2) => {
     context.fillStyle = "black";
     x_array.push(x);
     y_array.push(y);
@@ -71,9 +82,9 @@ const drawingImg = (x1, y1, x2, y2) => {
     context.arc(x1,y1, brushSize, 30, 2*Math.PI, true);
     context.closePath();
     context.fillStyle = brushColor; 
-    context.fill( );
-    
-    
+    context.fill( );  
+    old_x_array = x_array.slice();
+    old_y_array = y_array.slice();
 }
 const erase = (x,y) => {
     if(isErase && isDrawing){
@@ -104,25 +115,27 @@ const changeBrushSize = (btn) => {
         brushSize = 15;        
     }
 }
-const undo = (x,y) => {
+
+const isUndo = () => {
     
     // erases the last mouse down to mouse up strokes
     /*need to find current xy coordinates and prevoius xy coordinataes*/
-    let undoX = -(endingX - startingX);
-    let undoY = -(endingY - startingY);
     context.beginPath();
-    for (let x = x_array.length; x>0; x--){
-    
-            context.moveTo(startingX,startingY);
-            context.lineTo(x_array[x],y_array[x]);
-            context.strokeStyle = "white";
-            context.stroke();
-            context.lineWidth = 50;
-            console.log("UNDO")
-            console.log(x_array, y_array);
+    for (let x = old_x_array.length; x>=1; x--){
+        console.log("LOOP");
+
+        context.moveTo(startingX,startingY);
+        context.lineTo(old_x_array[x],old_y_array[x]);
+        context.strokeStyle = "white";
+        context.stroke();
+        context.lineWidth = 50;
+        
     }
     x_array = [];
     y_array = [];
+    old_x_array = [];
+    old_y_array = [];
+    console.log("EMPTY ARRAY",old_x_array);
 }
 const clearCanvas = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
