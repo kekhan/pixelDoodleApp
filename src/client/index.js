@@ -1,7 +1,6 @@
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
-context.fillStyle = "blue";
 context.fillRect(0, 0, canvas.width, canvas.height);
 canvas.height = window.innerHeight;
 let isDrawing = false;
@@ -88,7 +87,7 @@ const drawingDoodle = (x1, y1, x2, y2) => {
 }
 const erase = (x,y) => {
     if(isErase && isDrawing){
-        brushColor = 'white';
+        brushColor = 'black';
     }
 }
 
@@ -126,7 +125,7 @@ const isUndo = () => {
 
         context.moveTo(startingX,startingY);
         context.lineTo(old_x_array[x],old_y_array[x]);
-        context.strokeStyle = "white";
+        context.strokeStyle = "black";
         context.stroke();
         context.lineWidth = 50;
         
@@ -148,11 +147,13 @@ const convertToPng = () => {
 }
 
 
-/*const save = () => {
+const save = () => {
     // saves the image as a url into database
+    context.fillStyle = "black";
     convertToPng();
     savedImages.push(image.src);
-    console.log(savedImages);
+
+    console.log(image.src);
 }
 
 const login = () => {
@@ -162,5 +163,5 @@ const login = () => {
 const signup = () => {
     // creates an account for new user.
 
-}*/
+}
 console.log(x_array, y_array);

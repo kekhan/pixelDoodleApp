@@ -1,3 +1,7 @@
+canvas{
+    background: black;
+    margin: 0;
+}
 #red{
     background: red;
     widows: 20px;
