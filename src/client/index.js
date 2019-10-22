@@ -21,6 +21,8 @@ let endingX = 0;
 let startingY = 0;
 let endingY = 0;
 let undo = false;
+let list = document.createElement("ul");
+
 window.addEventListener('mousemove',function event(e){
     x = e.clientX - rect.x;
     y = e.clientY - rect.y;
@@ -87,7 +89,7 @@ const drawingDoodle = (x1, y1, x2, y2) => {
 }
 const erase = (x,y) => {
     if(isErase && isDrawing){
-        brushColor = 'black';
+        brushColor = 'white';
     }
 }
 
@@ -125,7 +127,7 @@ const isUndo = () => {
 
         context.moveTo(startingX,startingY);
         context.lineTo(old_x_array[x],old_y_array[x]);
-        context.strokeStyle = "black";
+        context.strokeStyle = "white";
         context.stroke();
         context.lineWidth = 50;
         
@@ -142,8 +144,21 @@ const clearCanvas = () => {
 const convertToPng = () => {
     // converts the canvas element into a png image
     let imageUrl = canvas.toDataURL("image/png");
-    image.src = imageUrl;
+    console.log(imageUrl);
+    //image.src = imageUrl;
+
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    createImgList(img);
     
+    
+}
+const createImgList = (image) => {
+    let listItem = document.createElement("li");
+    listItem.append(image);
+    list.append(listItem);
+    document.body.append(list);
+
 }
 
 
@@ -153,8 +168,9 @@ const save = () => {
     convertToPng();
     savedImages.push(image.src);
 
-    console.log(image.src);
+
 }
+
 
 const login = () => {
     // logs in existing user
