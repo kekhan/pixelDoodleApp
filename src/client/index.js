@@ -155,8 +155,11 @@ const convertToPng = () => {
 }
 const createImgList = (image) => {
     let listItem = document.createElement("li");
+    let anchor = document.createElement("a");
+    anchor.href = image.src;
     listItem.append(image);
-    list.append(listItem);
+    anchor.append(listItem);
+    list.append(anchor);
     document.body.append(list);
 
 }
