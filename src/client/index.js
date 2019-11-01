@@ -57,6 +57,13 @@ window.addEventListener('mouseup', function event(e){
     
 
 });
+window.addEventListener('click', function event(e){
+    this.console.log(e.path[0].id);
+    let id = e.path[0].id;
+    if(id == "delete"){
+        deletingImg(e);
+    }
+})
 
 window.addEventListener('keydown', function event(e){
     x = e.clientX;
@@ -153,14 +160,32 @@ const convertToPng = () => {
     
     
 }
+let count = 0;
 const createImgList = (image) => {
+    let key = count;
     let listItem = document.createElement("li");
+    listItem.id = key;
     let anchor = document.createElement("a");
+    let delBtn = document.createElement('button');
+    delBtn.id = "delete";
+    delBtn.value = "X";
+    delBtn.style.height = '15px';
+    anchor.append(delBtn);
     anchor.href = image.src;
+
     listItem.append(image);
     anchor.append(listItem);
     list.append(anchor);
-    document.body.append(list);
+    document.body.prepend(list);
+    count++;
+
+}
+const deletingImg = (element) => {
+    //this function will get called if delete button is pressed
+    // after that it will check which element to delete
+    console.log("IN DEl", element.path[1]);
+    let key = element.path[1];
+    key.remove();
 
 }
 
@@ -184,3 +209,6 @@ const signup = () => {
 
 }
 console.log(x_array, y_array);
+const windowResize = () => {
+    
+}
