@@ -176,7 +176,7 @@ const createImgList = (image) => {
     listItem.append(image);
     anchor.append(listItem);
     list.append(anchor);
-    document.body.prepend(list);
+    document.body.append(list);
     count++;
 
 }
