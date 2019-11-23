@@ -13,7 +13,7 @@ const rect = canvas.getBoundingClientRect();
 let brushSize = 1;
 let savedImages = [];
 let x_array = [];
-let y_array = []
+let y_array = [];
 let old_x_array = [];
 let old_y_array = [];
 let startingX = 0;
@@ -60,7 +60,10 @@ window.addEventListener('mouseup', function event(e){
 window.addEventListener('click', function event(e){
     this.console.log(e.path[0].id);
     let id = e.path[0].id;
+    isDrawing = false;
+
     if(id == "delete"){
+        isDrawing = false;
         deletingImg(e);
     }
 })
@@ -168,8 +171,7 @@ const createImgList = (image) => {
     let anchor = document.createElement("a");
     let delBtn = document.createElement('button');
     delBtn.id = "delete";
-    delBtn.value = "X";
-    delBtn.style.height = '15px';
+    delBtn.textContent = "X";
     anchor.append(delBtn);
     anchor.href = image.src;
 
