@@ -11,9 +11,9 @@ This app is a drawing application.
 
 ## Technologies
 Project is created with:
-*Html5
-*javascript
-*css3
+* Html5
+* Javascript
+* Css3
 
 ## Setup
 To run this project, clone it locally:
