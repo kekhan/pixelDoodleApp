@@ -6,12 +6,12 @@ A drawing app.
 * [Setup](#setup)
 ## General info
 This app is a drawing application.
-##Technologies
+## Technologies
 Project is created with:
 *Html5
 *javascript
 *css3
-##Setup
+## Setup
 To run this project, clone it locally:
 $ cd pixelDoodleApp/src/client
 * open index.html in browser
