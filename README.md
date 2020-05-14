@@ -11,7 +11,7 @@ A drawing app.
 
 
 ## General info
-This app is a drawing application.
+Dotted Doodle is a drawing application for artists to share their work and collaborate. 
 
 ## Technologies
 Project is created with:
