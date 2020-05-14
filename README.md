@@ -5,7 +5,10 @@ A drawing app.
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Usage](#usage)
 * [Features](#features)
+* [Status](#status)
+
 
 ## General info
 This app is a drawing application.
@@ -22,6 +25,11 @@ To run this project, clone it locally:
 $ cd pixelDoodleApp/src/client
 ```
 * open index.html in browser
+
+## Usage
+![doodl](/doodle.png)
+Format: ![screenshot of project](url)
+
 ## Features
 List of features ready and TODO for future features
 ### Ready Features
@@ -32,3 +40,6 @@ List of features ready and TODO for future features
 * Create download option
 * Create Twitter share option
 * Have a menu to select tools
+## Status
+Project is in development.
+
