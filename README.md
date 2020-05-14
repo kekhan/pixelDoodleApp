@@ -28,7 +28,7 @@ $ cd pixelDoodleApp/src/client
 
 ## Usage
 ![doodl](/doodle.png)
-Format: ![screenshot of project](url)
+Format: ![screenshot of project](src/client/index.html)
 
 ## Features
 List of features ready and TODO for future features
