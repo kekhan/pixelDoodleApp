@@ -1,5 +1,5 @@
 # Dotted Doodles
-A drawing app.
+This documentation is about a doodling app for artists. The document users will learn how to use and intall the application.
 
 ## Table of contents
 * [General info](#general-info)
