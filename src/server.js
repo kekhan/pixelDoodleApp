@@ -8,6 +8,6 @@ app.get('/', (req, res) => res.send(
 ));
 
 app.listen(port, ()=>{
-    console.log("listening to portr");
+    console.log("listening to port");
 });
 
