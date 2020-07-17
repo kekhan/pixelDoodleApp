@@ -1,8 +1,9 @@
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
-canvas.width = window.innerWidth;
+canvas.width = window.innerWidth * .5;
 context.fillRect(0, 0, canvas.width, canvas.height);
-canvas.height = window.innerHeight;
+canvas.height = window.innerHeight * .5;
+canvas.style.border = "solid";
 let isDrawing = false;
 let isErase = false;
 let brushColor = '';
@@ -43,7 +44,7 @@ window.addEventListener('mousedown', function event(e){
     if(e.clientX > 150 & e.clientY> 100){
         drawingDoodle(x,y, e.clientX, e.clientY);
     }
-    
+
 });
 window.addEventListener('mouseup', function event(e){
     x = e.clientX - rect.x;
@@ -52,9 +53,9 @@ window.addEventListener('mouseup', function event(e){
     endingY = y;
     isDrawing = false;
     this.console.log("OLD", old_x_array);
-  
-  
-    
+
+
+
 
 });
 window.addEventListener('click', function event(e){
@@ -73,7 +74,7 @@ window.addEventListener('keydown', function event(e){
     y = e.clientY;
     isErase = true;
     if(e.keyCode == 69){
-        
+
 
     }
 });
@@ -92,8 +93,8 @@ const drawingDoodle = (x1, y1, x2, y2) => {
     context.moveTo(x1,y1);
     context.arc(x1,y1, brushSize, 30, 2*Math.PI, true);
     context.closePath();
-    context.fillStyle = brushColor; 
-    context.fill( );  
+    context.fillStyle = brushColor;
+    context.fill( );
     old_x_array = x_array.slice();
     old_y_array = y_array.slice();
 }
@@ -104,7 +105,7 @@ const erase = (x,y) => {
 }
 
 const changeColor = (btn) => {
-    
+
     color = btn.id;
     brushColor = color;
 };
@@ -120,15 +121,15 @@ const changeBrushSize = (btn) => {
     }
     else if (size == "mediumBrush") {
         brushSize = 10;
-        
-    } 
+
+    }
     else if (size == "bigBrush") {
-        brushSize = 15;        
+        brushSize = 15;
     }
 }
 
 const isUndo = () => {
-    
+
     // erases the last mouse down to mouse up strokes
     /*need to find current xy coordinates and prevoius xy coordinataes*/
     context.beginPath();
@@ -140,7 +141,7 @@ const isUndo = () => {
         context.strokeStyle = "white";
         context.stroke();
         context.lineWidth = 50;
-        
+
     }
     x_array = [];
     y_array = [];
@@ -160,13 +161,20 @@ const convertToPng = () => {
     var img = document.createElement('img');
     img.src = imageUrl;
     createImgList(img);
-    
-    
+
+
 }
 let count = 0;
 const createImgList = (image) => {
     let key = count;
     let listItem = document.createElement("li");
+    listItem.style.border = "solid";
+    listItem.style.width = "50px";
+
+
+    listItem.style.height = "50px";
+    listItem.style.padding = "100px";
+    listItem.style.margin = "50px";
     listItem.id = key;
     let anchor = document.createElement("a");
     let delBtn = document.createElement('button');
@@ -174,7 +182,6 @@ const createImgList = (image) => {
     delBtn.textContent = "X";
     anchor.append(delBtn);
     anchor.href = image.src;
-
     listItem.append(image);
     anchor.append(listItem);
     list.append(anchor);
@@ -197,20 +204,4 @@ const save = () => {
     context.fillStyle = "black";
     convertToPng();
     savedImages.push(image.src);
-
-
-}
-
-
-const login = () => {
-    // logs in existing user
-
-}
-const signup = () => {
-    // creates an account for new user.
-
-}
-console.log(x_array, y_array);
-const windowResize = () => {
-    
 }

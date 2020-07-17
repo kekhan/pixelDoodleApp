@@ -39,11 +39,9 @@ img{
     max-height: 100px;
 }
 a{
-    border: solid;
-    width: 10%;
-    height: 12%;
-    display: inline-block;    
- 
+
+    display: inline-block;
+
 }
 a:button{
     background-color: red;
@@ -76,4 +74,8 @@ a:button{
     border-radius: 50%;
     background-color: black;
 
+}
+canvas{
+  margin-left: 25%;
+  margin-right: 25%;
 }
