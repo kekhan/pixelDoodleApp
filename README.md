@@ -28,7 +28,7 @@ $ cd pixelDoodleApp/src/client
 
 ## Usage
 ![doodl](/doodle.png)
-Demo:(http://kerinkhan.me/pixelDoodleApp/src/client/index.html)
+Demo:(https://kekhan.github.io/pixelDoodleApp/src/client/index.html)
 
 ## Features
 List of features ready and TODO for future features
